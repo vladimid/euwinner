@@ -168,17 +168,17 @@ python test_range_validation.py
 ### Manual Testing with curl
 ```bash
 # Range format
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [21, 25]}'
 
 # Single with end
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [21], "number_range_end": 25}'
 
 # Default
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"draws": 100}'
 ```

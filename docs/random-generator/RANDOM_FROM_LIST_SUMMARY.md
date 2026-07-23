@@ -10,13 +10,13 @@ Added functionality to generate random numbers from a provided list while mainta
 
 ### 1. Two New Endpoints
 
-#### `/api/random/generate-from-list` (POST)
+#### `/random/generate-from-list` (POST)
 - Generates random numbers from a provided pool
 - Selects unique numbers from the pool
 - Optional bonus number support
 - Returns sorted, unique numbers
 
-#### `/api/random/generate-from-list-bulk` (POST)
+#### `/random/generate-from-list-bulk` (POST)
 - Bulk version of generate-from-list
 - Generates multiple sets of random numbers
 - Each set selects from the same pool
@@ -267,7 +267,7 @@ Full documentation available in:
 
 ```bash
 # Generate 6 numbers from pool
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -275,7 +275,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
   }'
 
 # Bulk generate 10 sets
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 10,

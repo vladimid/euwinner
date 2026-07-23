@@ -121,7 +121,7 @@ pytest tests/test_api/test_random_numbers_controller.py::TestGenerateRandomNumbe
 
 ## 📚 API Endpoints
 
-### Random Number Generation (`/api/random`)
+### Random Number Generation (`/random`)
 
 | Method | Endpoint | Purpose |
 |--------|----------|---------|
@@ -132,7 +132,7 @@ pytest tests/test_api/test_random_numbers_controller.py::TestGenerateRandomNumbe
 | GET | `/range-info` | Get range statistics |
 | POST | `/seed-generate` | Generate with reproducible seed |
 
-### System Info (`/api/system`)
+### System Info (`/system`)
 
 | Method | Endpoint | Purpose |
 |--------|----------|---------|
@@ -149,7 +149,7 @@ pytest tests/test_api/test_random_numbers_controller.py::TestGenerateRandomNumbe
 ### Generate Random Numbers
 
 ```bash
-curl -X POST http://localhost:8000/api/random/generate \
+curl -X POST http://localhost:8000/random/generate \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -173,7 +173,7 @@ curl -X POST http://localhost:8000/api/random/generate \
 ### Generate Bulk
 
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-bulk \
+curl -X POST http://localhost:8000/random/generate-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 10,
@@ -187,7 +187,7 @@ curl -X POST http://localhost:8000/api/random/generate-bulk \
 ### Validate Numbers
 
 ```bash
-curl -X POST http://localhost:8000/api/random/validate \
+curl -X POST http://localhost:8000/random/validate \
   -H "Content-Type: application/json" \
   -d '{
     "numbers": [3, 15, 27, 35, 41, 48],
@@ -200,7 +200,7 @@ curl -X POST http://localhost:8000/api/random/validate \
 ### Get Range Info
 
 ```bash
-curl http://localhost:8000/api/random/range-info?min_number=1&max_number=49
+curl http://localhost:8000/random/range-info?min_number=1&max_number=49
 ```
 
 ---

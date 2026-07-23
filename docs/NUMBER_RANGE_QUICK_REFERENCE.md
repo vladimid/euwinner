@@ -4,7 +4,7 @@
 
 ### 1️⃣ Default Range (1-59)
 ```json
-POST /api/frequency
+POST /frequency
 {
   "draws": 100
 }
@@ -15,7 +15,7 @@ POST /api/frequency
 
 ### 2️⃣ Two-Element Range (NEW)
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [21, 25],
   "draws": 100
@@ -27,7 +27,7 @@ POST /api/frequency
 
 ### 3️⃣ Single Number with Range End (NEW)
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [21],
   "number_range_end": 25,
@@ -40,7 +40,7 @@ POST /api/frequency
 
 ### 4️⃣ Verbose List (Original, Still Works)
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [21, 22, 23, 24, 25],
   "draws": 100
@@ -52,7 +52,7 @@ POST /api/frequency
 
 ### 5️⃣ Single Number Only
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [42],
   "draws": 100
@@ -137,7 +137,7 @@ assert r4.number_range is None
 ### Analyze a Small Range
 ```bash
 # Query numbers 1-10
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [1, 10]}'
 ```
@@ -145,7 +145,7 @@ curl -X POST http://localhost:8000/api/frequency \
 ### Analyze Specific Numbers
 ```bash
 # Query specific numbers: 5, 10, 15, 20, 25
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [5, 10, 15, 20, 25]}'
 ```
@@ -153,7 +153,7 @@ curl -X POST http://localhost:8000/api/frequency \
 ### Analyze High Numbers
 ```bash
 # Query numbers 30-59
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [30, 59]}'
 ```
@@ -161,7 +161,7 @@ curl -X POST http://localhost:8000/api/frequency \
 ### Analyze Last 20 Draws
 ```bash
 # Analyze last 20 draws with default range
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"draws": 20}'
 ```

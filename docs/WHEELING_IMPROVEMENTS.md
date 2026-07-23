@@ -144,7 +144,7 @@ python demo_random_selection.py
 
 ### Basic Wheeling System
 ```bash
-curl -X POST http://localhost:8000/api/system \
+curl -X POST http://localhost:8000/system \
   -H "Content-Type: application/json" \
   -d '{
     "mainNumbersCombination": [1, 2, 3, 4, 5, 6],
@@ -156,7 +156,7 @@ curl -X POST http://localhost:8000/api/system \
 
 ### With Bonus Numbers
 ```bash
-curl -X POST http://localhost:8000/api/system \
+curl -X POST http://localhost:8000/system \
   -H "Content-Type: application/json" \
   -d '{
     "mainNumbersCombination": [1, 2, 3, 4, 5, 6],
@@ -172,7 +172,7 @@ curl -X POST http://localhost:8000/api/system \
 
 ### Random Wheeling System
 ```bash
-curl -X POST http://localhost:8000/api/system/wheeling/random \
+curl -X POST http://localhost:8000/system/wheeling/random \
   -H "Content-Type: application/json" \
   -d '{
     "mainGamePoolSize": 59,

@@ -88,7 +88,7 @@ Example:
 
 ### Basic Example: 3 from 6 numbers
 ```bash
-curl -X POST http://localhost:8000/api/system \
+curl -X POST http://localhost:8000/system \
   -H "Content-Type: application/json" \
   -d '{
     "mainNumbersCombination": [1, 2, 3, 4, 5, 6],
@@ -105,7 +105,7 @@ This will:
 
 ### With Bonus Numbers
 ```bash
-curl -X POST http://localhost:8000/api/system \
+curl -X POST http://localhost:8000/system \
   -H "Content-Type: application/json" \
   -d '{
     "mainNumbersCombination": [1, 2, 3, 4, 5, 6],
@@ -151,7 +151,7 @@ python -m uvicorn euwin.api.main:app --reload --port 8000
 
 Test multiple times to see different random selections:
 ```bash
-curl -X POST http://localhost:8000/api/system \
+curl -X POST http://localhost:8000/system \
   -H "Content-Type: application/json" \
   -d '{
     "mainNumbersCombination": [1, 2, 3, 4, 5, 6],

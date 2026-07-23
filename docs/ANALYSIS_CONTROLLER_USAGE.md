@@ -1,6 +1,6 @@
 # Analysis Controller Usage Examples
 
-## API Endpoint: POST /api/analysis/frequency
+## API Endpoint: POST /analysis/frequency
 
 The Analysis Controller accepts JSON requests with 0-3 optional fields:
 - **draws**: Number of draws to analyze (default: 100)
@@ -9,7 +9,7 @@ The Analysis Controller accepts JSON requests with 0-3 optional fields:
 
 ### Example 1: Default Parameters (Analyze most recent 100 draws, all numbers)
 ```json
-POST /api/analysis/frequency
+POST /analysis/frequency
 Content-Type: application/json
 
 {}
@@ -31,7 +31,7 @@ Response:
 
 ### Example 2: Analyze 50 draws starting from offset 10
 ```json
-POST /api/analysis/frequency
+POST /analysis/frequency
 Content-Type: application/json
 
 {
@@ -42,7 +42,7 @@ Content-Type: application/json
 
 ### Example 3: Analyze specific numbers only
 ```json
-POST /api/analysis/frequency
+POST /analysis/frequency
 Content-Type: application/json
 
 {
@@ -54,7 +54,7 @@ Content-Type: application/json
 
 ### Example 4: Quick snapshot of most recent 20 draws
 ```json
-POST /api/analysis/frequency
+POST /analysis/frequency
 Content-Type: application/json
 
 {
@@ -81,17 +81,17 @@ python euwin/analysis/number_frequency.py 3160 30
 
 ```bash
 # Default parameters
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" \
   -d '{}'
 
 # Custom parameters
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" \
   -d '{"draws": 50, "offset": 10}'
 
 # Specific numbers
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" \
   -d '{"draws": 100, "number_range": [1, 2, 3, 4, 5, 6]}'
 ```

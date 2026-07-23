@@ -130,10 +130,10 @@ app.add_middleware(
 # Import and include routers from your controllers
 from euwin.api.routes import data_controller, analysis_controller, random_numbers_controller, system_controller
 
-app.include_router(data_controller.router, prefix="/api/data", tags=["Data"])
-app.include_router(analysis_controller.router, prefix="/api/analysis", tags=["Analysis"])
-app.include_router(random_numbers_controller.router, prefix="/api/random", tags=["Random Numbers"])
-app.include_router(system_controller.router, prefix="/api/system", tags=["System"])
+app.include_router(data_controller.router, prefix="/data", tags=["Data"])
+app.include_router(analysis_controller.router, prefix="/analysis", tags=["Analysis"])
+app.include_router(random_numbers_controller.router, prefix="/random", tags=["Random Numbers"])
+app.include_router(system_controller.router, prefix="/system", tags=["System"])
 
 # Root endpoint
 @app.get("/")
@@ -407,12 +407,12 @@ def sample_draw_data():
 
 ```python
 def test_get_draw(client):
-    response = client.get("/api/data/draws/1")
+    response = client.get("/data/draws/1")
     assert response.status_code == 200
     assert response.json()["draw_id"] == 1
 
 def test_create_draw(client, sample_draw_data):
-    response = client.post("/api/data/draws", json=sample_draw_data)
+    response = client.post("/data/draws", json=sample_draw_data)
     assert response.status_code in [200, 201]
 ```
 
@@ -482,7 +482,7 @@ services:
 ```python
 # Spring Java:
 # @RestController
-# @RequestMapping("/api/data")
+# @RequestMapping("/data")
 # public class DataController {
 #     @PostMapping
 #     public ResponseEntity<DrawEntry> createDraw(@RequestBody DrawEntry draw) { ... }
@@ -496,7 +496,7 @@ class DrawEntry(BaseModel):
     draw_id: int
     numbers: list[int]
 
-router = APIRouter(prefix="/api/data")
+router = APIRouter(prefix="/data")
 
 @router.post("/")
 def create_draw(draw: DrawEntry):

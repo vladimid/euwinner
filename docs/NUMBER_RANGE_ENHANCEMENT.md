@@ -111,7 +111,7 @@ Don't provide `number_range`:
 
 ### Example 1: Analyze numbers 21-30
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{
     "number_range": [21, 30],
@@ -122,7 +122,7 @@ curl -X POST http://localhost:8000/api/frequency \
 
 ### Example 2: Analyze numbers 1-59 (default) for last 50 draws
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{
     "draws": 50,
@@ -132,7 +132,7 @@ curl -X POST http://localhost:8000/api/frequency \
 
 ### Example 3: Analyze single number with separate end parameter
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{
     "number_range": [1],
@@ -143,7 +143,7 @@ curl -X POST http://localhost:8000/api/frequency \
 
 ### Example 4: Analyze specific numbers
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{
     "number_range": [5, 10, 15, 20, 25, 30],

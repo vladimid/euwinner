@@ -8,7 +8,7 @@ The Random Numbers Controller now supports generating random numbers from a prov
 
 ## New Endpoints
 
-### 1. POST `/api/random/generate-from-list`
+### 1. POST `/random/generate-from-list`
 
 Generate random numbers by selecting from a provided list.
 
@@ -51,9 +51,9 @@ Generate random numbers by selecting from a provided list.
 
 ---
 
-### 2. POST `/api/random/generate-from-list-bulk`
+### 2. POST `/random/generate-from-list-bulk`
 
-Generate multiple sets of random numbers from a list in bulk.
+Generate multiple sets of random numbers in bulk from a provided list.
 
 #### Request
 ```json
@@ -157,7 +157,7 @@ Generate 100 different combinations from the same pool.
 
 ## Comparison with Existing Generate Endpoint
 
-### Existing `/api/random/generate` (Min/Max Range)
+### Existing `/random/generate` (Min/Max Range)
 ```json
 {
   "count": 6,
@@ -169,7 +169,7 @@ Generate 100 different combinations from the same pool.
 - Must specify min and max
 - Automatically includes all numbers in range
 
-### New `/api/random/generate-from-list` (Number Pool)
+### New `/random/generate-from-list` (Number Pool)
 ```json
 {
   "count": 6,
@@ -188,7 +188,7 @@ Generate 100 different combinations from the same pool.
 ### Example 1: Select from High Numbers
 **Request:**
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -211,7 +211,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 ### Example 2: Select from Specific Numbers with Bonus
 **Request:**
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 5,
@@ -236,7 +236,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 ### Example 3: Bulk Generation from Pool
 **Request:**
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 3,
@@ -320,12 +320,12 @@ Status: 422
 ## Backward Compatibility
 
 ✅ **All existing endpoints continue to work:**
-- `/api/random/generate` - Min/max range generation
-- `/api/random/generate-bulk` - Bulk min/max generation
-- `/api/random/validate` - Number validation
-- `/api/random/sequential` - Sequential numbers
-- `/api/random/range-info` - Range information
-- `/api/random/seed-generate` - Seeded generation
+- `/random/generate` - Min/max range generation
+- `/random/generate-bulk` - Bulk min/max generation
+- `/random/validate` - Number validation
+- `/random/sequential` - Sequential numbers
+- `/random/range-info` - Range information
+- `/random/seed-generate` - Seeded generation
 
 ---
 
@@ -355,7 +355,7 @@ import requests
 
 # Generate 6 numbers from a specific pool
 response = requests.post(
-    'http://localhost:8000/api/random/generate-from-list',
+    'http://localhost:8000/random/generate-from-list',
     json={
         'count': 6,
         'number_pool': [5, 10, 15, 20, 25, 30, 35, 40, 45, 50]
@@ -369,7 +369,7 @@ print(f"Generated numbers: {numbers}")
 ### JavaScript Example
 ```javascript
 // Generate 6 numbers from a specific pool
-const response = await fetch('http://localhost:8000/api/random/generate-from-list', {
+const response = await fetch('http://localhost:8000/random/generate-from-list', {
     method: 'POST',
     headers: {
         'Content-Type': 'application/json'

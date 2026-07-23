@@ -21,7 +21,7 @@
 ### Integration
 - [x] Module properly imports in `euwin/api/main.py`
 - [x] Router registered with FastAPI app
-- [x] Endpoints mounted at `/api/random` prefix
+- [x] Endpoints mounted at `/random` prefix
 - [x] Auto-documentation available at `/docs`
 
 ### Validation
@@ -35,7 +35,7 @@
 ## 📋 API Endpoints Checklist
 
 ### 1. Generate Random Numbers
-- [x] Endpoint: `POST /api/random/generate`
+- [x] Endpoint: `POST /random/generate`
 - [x] Request validation for count (1-100)
 - [x] Request validation for range (min < max)
 - [x] Optional bonus number support
@@ -45,7 +45,7 @@
 - [x] HTTP 500 for server errors
 
 ### 2. Generate Bulk Random Numbers
-- [x] Endpoint: `POST /api/random/generate-bulk`
+- [x] Endpoint: `POST /random/generate-bulk`
 - [x] Support for multiple generations (1-1000)
 - [x] Batch processing capability
 - [x] Consistent validation per set
@@ -53,7 +53,7 @@
 - [x] Efficient processing
 
 ### 3. Validate Random Numbers
-- [x] Endpoint: `POST /api/random/validate`
+- [x] Endpoint: `POST /random/validate`
 - [x] Range validation (min/max)
 - [x] Duplicate detection
 - [x] Empty list check
@@ -61,14 +61,14 @@
 - [x] Returns validation status
 
 ### 4. Generate Sequential Numbers
-- [x] Endpoint: `GET /api/random/sequential`
+- [x] Endpoint: `GET /random/sequential`
 - [x] Query parameter: count
 - [x] Query parameter: start
 - [x] Returns sequential list
 - [x] Input validation
 
 ### 5. Get Range Information
-- [x] Endpoint: `GET /api/random/range-info`
+- [x] Endpoint: `GET /random/range-info`
 - [x] Query parameters: min, max
 - [x] Returns available count
 - [x] Returns middle value
@@ -76,7 +76,7 @@
 - [x] Validation of range
 
 ### 6. Generate with Seed
-- [x] Endpoint: `POST /api/random/seed-generate`
+- [x] Endpoint: `POST /random/seed-generate`
 - [x] Query parameter: seed
 - [x] Reproducible results
 - [x] Same validation as generate
@@ -129,7 +129,7 @@
 ### Integration Testing Points
 - [x] Module imports without errors
 - [x] Router registers with FastAPI
-- [x] Prefix routing works (/api/random)
+- [x] Prefix routing works (/random)
 - [x] Request models accepted
 - [x] Response models validated
 

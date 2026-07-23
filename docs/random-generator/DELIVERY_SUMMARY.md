@@ -12,13 +12,13 @@
 
 ### 1. **Two New API Endpoints**
 
-#### Endpoint 1: `POST /api/random/generate-from-list`
+#### Endpoint 1: `POST /random/generate-from-list`
 - Generate random numbers by selecting from a provided list
 - Returns sorted, unique numbers
 - Optional bonus number support
 - Request/Response Models: `RandomNumbersFromListRequest` / `RandomNumbersResponse`
 
-#### Endpoint 2: `POST /api/random/generate-from-list-bulk`
+#### Endpoint 2: `POST /random/generate-from-list-bulk`
 - Bulk generation: Generate 1-1000 sets from the same pool
 - Each set is independently random
 - Reuses bulk response model: `BulkRandomGenerationResponse`
@@ -161,7 +161,7 @@
 
 ### Generate from Hot Numbers
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -171,7 +171,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 
 ### Generate with Bonus
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -183,7 +183,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 
 ### Bulk Generate 100 Sets
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 100,

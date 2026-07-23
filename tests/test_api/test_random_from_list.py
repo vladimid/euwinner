@@ -6,7 +6,7 @@ import pytest
 
 
 class TestGenerateFromList:
-    """Tests for POST /api/random/generate-from-list endpoint"""
+    """Tests for POST /random/generate-from-list endpoint"""
 
     def test_generate_from_list_basic(self, client):
         """Test basic generation from a list"""
@@ -14,7 +14,7 @@ class TestGenerateFromList:
             "count": 3,
             "number_pool": [1, 5, 10, 15, 20, 25, 30]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -37,7 +37,7 @@ class TestGenerateFromList:
             "include_bonus": True,
             "bonus_range": 10
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -52,7 +52,7 @@ class TestGenerateFromList:
             "number_pool": [1, 5, 10, 15, 20, 25, 30],
             "include_bonus": False
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -64,7 +64,7 @@ class TestGenerateFromList:
             "count": 1,
             "number_pool": [42]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -78,7 +78,7 @@ class TestGenerateFromList:
             "count": len(pool),
             "number_pool": pool
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -91,7 +91,7 @@ class TestGenerateFromList:
             "count": 10,
             "number_pool": [1, 5, 10]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 400
         assert "Cannot generate" in response.json()["detail"]
@@ -102,7 +102,7 @@ class TestGenerateFromList:
             "count": 1,
             "number_pool": []
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 422  # Pydantic validation error
 
@@ -112,7 +112,7 @@ class TestGenerateFromList:
             "count": 2,
             "number_pool": [1, 5, 5, 10]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 400
         assert "duplicate" in response.json()["detail"].lower()
@@ -123,7 +123,7 @@ class TestGenerateFromList:
             "count": 10,
             "number_pool": list(range(1, 51))
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -136,7 +136,7 @@ class TestGenerateFromList:
             "count": 20,
             "number_pool": list(range(1, 100))
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -149,7 +149,7 @@ class TestGenerateFromList:
             "count": 3,
             "number_pool": [-10, -5, 0, 5, 10]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -162,7 +162,7 @@ class TestGenerateFromList:
             "count": 3,
             "number_pool": [1000, 2000, 3000, 4000, 5000]
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -170,7 +170,7 @@ class TestGenerateFromList:
 
 
 class TestGenerateFromListBulk:
-    """Tests for POST /api/random/generate-from-list-bulk endpoint"""
+    """Tests for POST /random/generate-from-list-bulk endpoint"""
 
     def test_bulk_generate_from_list_basic(self, client):
         """Test basic bulk generation from list"""
@@ -179,7 +179,7 @@ class TestGenerateFromListBulk:
             "count": 2,
             "number_pool": [1, 5, 10, 15, 20]
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -195,7 +195,7 @@ class TestGenerateFromListBulk:
             "count": 3,
             "number_pool": list(range(1, 20))
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -212,7 +212,7 @@ class TestGenerateFromListBulk:
             "include_bonus": True,
             "bonus_range": 5
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -227,7 +227,7 @@ class TestGenerateFromListBulk:
             "count": 2,
             "number_pool": [1, 1, 5, 10]
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 400
         assert "duplicate" in response.json()["detail"].lower()
@@ -239,7 +239,7 @@ class TestGenerateFromListBulk:
             "count": 10,
             "number_pool": [1, 5, 10]
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 400
         assert "Cannot generate" in response.json()["detail"]
@@ -251,7 +251,7 @@ class TestGenerateFromListBulk:
             "count": 2,
             "number_pool": list(range(1, 50))
         }
-        response = client.post("/api/random/generate-from-list-bulk", json=request)
+        response = client.post("/random/generate-from-list-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -269,7 +269,7 @@ class TestGenerateFromListVsMinMax:
             "count": 3,
             "number_pool": [5, 15, 25, 35, 45, 55]  # Non-contiguous
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         assert len(response.json()["numbers"]) == 3
@@ -281,7 +281,7 @@ class TestGenerateFromListVsMinMax:
             "count": 5,
             "number_pool": list(range(1, 50))
         }
-        response = client.post("/api/random/generate-from-list", json=request)
+        response = client.post("/random/generate-from-list", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -297,14 +297,14 @@ class TestGenerateFromListVsMinMax:
             "count": 5,
             "number_pool": [10, 20, 30, 40, 50, 60, 70]
         }
-        response1 = client.post("/api/random/generate-from-list", json=request1)
+        response1 = client.post("/random/generate-from-list", json=request1)
 
         # Test 2: Same pool in different order
         request2 = {
             "count": 5,
             "number_pool": [70, 30, 50, 10, 60, 40, 20]
         }
-        response2 = client.post("/api/random/generate-from-list", json=request2)
+        response2 = client.post("/random/generate-from-list", json=request2)
 
         # Both should work (actual numbers will differ due to randomness)
         assert response1.status_code == 200
@@ -321,7 +321,7 @@ class TestBackwardCompatibility:
             "min_number": 1,
             "max_number": 49
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -335,7 +335,7 @@ class TestBackwardCompatibility:
             "min_number": 1,
             "max_number": 49
         }
-        response = client.post("/api/random/generate-bulk", json=request)
+        response = client.post("/random/generate-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()

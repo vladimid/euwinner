@@ -4,8 +4,8 @@
 
 Two new endpoints added to generate random numbers from a provided list:
 
-1. **POST `/api/random/generate-from-list`** - Single generation
-2. **POST `/api/random/generate-from-list-bulk`** - Bulk generation
+1. **POST `/random/generate-from-list`** - Single generation
+2. **POST `/random/generate-from-list-bulk`** - Bulk generation
 
 ---
 
@@ -13,7 +13,7 @@ Two new endpoints added to generate random numbers from a provided list:
 
 ### Generate 6 numbers from a pool
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -35,7 +35,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 
 ### With Bonus Number
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -59,7 +59,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 
 ### Bulk Generate 100 Sets
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 100,
@@ -210,7 +210,7 @@ Select from frequently drawn numbers:
 2. **Get the list**: [7, 14, 21, 28, 35, 42, 49]
 3. **Generate combinations**:
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 50,
@@ -229,7 +229,7 @@ import requests
 
 # Single generation
 response = requests.post(
-    'http://localhost:8000/api/random/generate-from-list',
+    'http://localhost:8000/random/generate-from-list',
     json={
         'count': 6,
         'number_pool': [1, 5, 10, 15, 20, 25, 30, 35, 40, 45]
@@ -240,7 +240,7 @@ print(f"Generated: {numbers}")
 
 # Bulk generation
 response = requests.post(
-    'http://localhost:8000/api/random/generate-from-list-bulk',
+    'http://localhost:8000/random/generate-from-list-bulk',
     json={
         'generations': 10,
         'count': 6,
@@ -257,12 +257,12 @@ for i, result in enumerate(all_sets, 1):
 ## Backward Compatibility
 
 ✅ All existing endpoints still work:
-- `/api/random/generate` (min/max)
-- `/api/random/generate-bulk` (bulk min/max)
-- `/api/random/validate`
-- `/api/random/sequential`
-- `/api/random/range-info`
-- `/api/random/seed-generate`
+- `/random/generate` (min/max)
+- `/random/generate-bulk` (bulk min/max)
+- `/random/validate`
+- `/random/sequential`
+- `/random/range-info`
+- `/random/seed-generate`
 
 No breaking changes!
 

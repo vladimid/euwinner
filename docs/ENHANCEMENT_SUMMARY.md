@@ -67,7 +67,7 @@ Quick test script for manual validation of the implementation (can be deleted af
 
 ### Example 1: Range format
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [21, 25],
   "draws": 100,
@@ -77,7 +77,7 @@ POST /api/frequency
 
 ### Example 2: Single with end
 ```json
-POST /api/frequency
+POST /frequency
 {
   "number_range": [21],
   "number_range_end": 25,
@@ -88,7 +88,7 @@ POST /api/frequency
 
 ### Example 3: Default (no range)
 ```json
-POST /api/frequency
+POST /frequency
 {
   "draws": 100,
   "offset": 0

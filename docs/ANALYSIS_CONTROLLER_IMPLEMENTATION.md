@@ -24,7 +24,7 @@ Features:
 Location: `/Users/vlada/sandbox/python/euwinner/euwin/api/routes/analysis_controller.py`
 
 REST API endpoint using the frequency analyzer:
-- Endpoint: `POST /api/analysis/frequency`
+- Endpoint: `POST /analysis/frequency`
 - Accepts JSON with optional fields: `draws`, `offset`, `number_range`
 - Returns comprehensive analysis response with statistics
 - Full error handling and validation
@@ -42,7 +42,7 @@ CLI script now uses the frequency_analyzer module while maintaining backward com
 
 ### Request Format
 ```json
-POST /api/analysis/frequency
+POST /analysis/frequency
 Content-Type: application/json
 
 {
@@ -71,19 +71,19 @@ Content-Type: application/json
 ### API - cURL Examples
 ```bash
 # Default (100 draws, all numbers)
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{}'
 
 # Last 50 draws
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{"draws": 50}'
 
 # Skip 10 draws, analyze next 50
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{"draws": 50, "offset": 10}'
 
 # Specific numbers only
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" \
   -d '{"draws": 100, "number_range": [1, 10, 20, 30, 40, 50, 59]}'
 ```
@@ -170,7 +170,7 @@ All components have been tested and verified:
                   ▼
 ┌─────────────────────────────────────────────────┐
 │      analysis_controller.py (FastAPI)           │
-│   POST /api/analysis/frequency                  │
+│   POST /analysis/frequency                  │
 │   - Receives JSON request                       │
 │   - Validates parameters                       │
 │   - Calls analyzer                              │

@@ -192,21 +192,21 @@ def normalize_number_range(self):
 
 ### Example 1: Analyze numbers 21-30
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [21, 30]}'
 ```
 
 ### Example 2: Analyze with single + end
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [21], "number_range_end": 30}'
 ```
 
 ### Example 3: Analyze specific numbers
 ```bash
-curl -X POST http://localhost:8000/api/frequency \
+curl -X POST http://localhost:8000/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [5, 10, 15, 20, 25]}'
 ```

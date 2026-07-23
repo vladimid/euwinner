@@ -10,12 +10,12 @@ Successfully implemented functionality to generate random numbers from a provide
 
 ### ✅ Two New Endpoints
 
-1. **POST `/api/random/generate-from-list`**
+1. **POST `/random/generate-from-list`**
    - Generate random numbers from a provided pool
    - Single generation request/response
    - Supports optional bonus numbers
 
-2. **POST `/api/random/generate-from-list-bulk`**
+2. **POST `/random/generate-from-list-bulk`**
    - Bulk generation from a provided pool
    - Generate 1-1000 sets at once
    - Each set from the same pool
@@ -146,7 +146,7 @@ Successfully implemented functionality to generate random numbers from a provide
 
 ### Single Generation
 ```
-POST /api/random/generate-from-list
+POST /random/generate-from-list
 
 Request:
 {
@@ -167,7 +167,7 @@ Response:
 
 ### Bulk Generation
 ```
-POST /api/random/generate-from-list-bulk
+POST /random/generate-from-list-bulk
 
 Request:
 {
@@ -316,12 +316,12 @@ Status: 422
 - No breaking changes
 
 **Existing Endpoints Still Work:**
-- ✓ `/api/random/generate` (min/max)
-- ✓ `/api/random/generate-bulk` (bulk min/max)
-- ✓ `/api/random/validate`
-- ✓ `/api/random/sequential`
-- ✓ `/api/random/range-info`
-- ✓ `/api/random/seed-generate`
+- ✓ `/random/generate` (min/max)
+- ✓ `/random/generate-bulk` (bulk min/max)
+- ✓ `/random/validate`
+- ✓ `/random/sequential`
+- ✓ `/random/range-info`
+- ✓ `/random/seed-generate`
 
 ---
 
@@ -372,7 +372,7 @@ Status: 422
 
 ### 1. Generate Single Set
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list \
+curl -X POST http://localhost:8000/random/generate-from-list \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -382,7 +382,7 @@ curl -X POST http://localhost:8000/api/random/generate-from-list \
 
 ### 2. Generate Multiple Sets
 ```bash
-curl -X POST http://localhost:8000/api/random/generate-from-list-bulk \
+curl -X POST http://localhost:8000/random/generate-from-list-bulk \
   -H "Content-Type: application/json" \
   -d '{
     "generations": 100,

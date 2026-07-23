@@ -6,11 +6,11 @@ import pytest
 
 
 class TestGenerateRandomNumbers:
-    """Tests for POST /api/random/generate endpoint"""
+    """Tests for POST /random/generate endpoint"""
 
     def test_generate_basic(self, client, sample_random_numbers_request):
         """Test basic random number generation"""
-        response = client.post("/api/random/generate", json=sample_random_numbers_request)
+        response = client.post("/random/generate", json=sample_random_numbers_request)
 
         assert response.status_code == 200
         data = response.json()
@@ -29,7 +29,7 @@ class TestGenerateRandomNumbers:
             "include_bonus": True,
             "bonus_range": 10
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -45,7 +45,7 @@ class TestGenerateRandomNumbers:
             "max_number": 49,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -59,7 +59,7 @@ class TestGenerateRandomNumbers:
             "max_number": 1,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 400
         assert "min_number must be less than max_number" in response.json()["detail"]
@@ -72,7 +72,7 @@ class TestGenerateRandomNumbers:
             "max_number": 49,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 400
         assert "Cannot generate" in response.json()["detail"]
@@ -85,7 +85,7 @@ class TestGenerateRandomNumbers:
             "max_number": 100,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 200
         numbers = response.json()["numbers"]
@@ -99,7 +99,7 @@ class TestGenerateRandomNumbers:
             "max_number": 100,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate", json=request)
+        response = client.post("/random/generate", json=request)
 
         assert response.status_code == 200
         numbers = response.json()["numbers"]
@@ -107,11 +107,11 @@ class TestGenerateRandomNumbers:
 
 
 class TestGenerateBulk:
-    """Tests for POST /api/random/generate-bulk endpoint"""
+    """Tests for POST /random/generate-bulk endpoint"""
 
     def test_bulk_generate_basic(self, client, sample_bulk_generation):
         """Test basic bulk generation"""
-        response = client.post("/api/random/generate-bulk", json=sample_bulk_generation)
+        response = client.post("/random/generate-bulk", json=sample_bulk_generation)
 
         assert response.status_code == 200
         data = response.json()
@@ -129,7 +129,7 @@ class TestGenerateBulk:
             "max_number": 49,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate-bulk", json=request)
+        response = client.post("/random/generate-bulk", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -146,17 +146,17 @@ class TestGenerateBulk:
             "max_number": 1,
             "include_bonus": False
         }
-        response = client.post("/api/random/generate-bulk", json=request)
+        response = client.post("/random/generate-bulk", json=request)
 
         assert response.status_code == 400
 
 
 class TestValidateRandomNumbers:
-    """Tests for POST /api/random/validate endpoint"""
+    """Tests for POST /random/validate endpoint"""
 
     def test_validate_valid_numbers(self, client, sample_numbers_to_validate):
         """Test validation of valid numbers"""
-        response = client.post("/api/random/validate", json=sample_numbers_to_validate)
+        response = client.post("/random/validate", json=sample_numbers_to_validate)
 
         assert response.status_code == 200
         data = response.json()
@@ -172,7 +172,7 @@ class TestValidateRandomNumbers:
             "max_allowed": 49,
             "allow_duplicates": False
         }
-        response = client.post("/api/random/validate", json=request)
+        response = client.post("/random/validate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -187,7 +187,7 @@ class TestValidateRandomNumbers:
             "max_allowed": 49,
             "allow_duplicates": False
         }
-        response = client.post("/api/random/validate", json=request)
+        response = client.post("/random/validate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -202,7 +202,7 @@ class TestValidateRandomNumbers:
             "max_allowed": 49,
             "allow_duplicates": True
         }
-        response = client.post("/api/random/validate", json=request)
+        response = client.post("/random/validate", json=request)
 
         assert response.status_code == 200
         data = response.json()
@@ -211,11 +211,11 @@ class TestValidateRandomNumbers:
 
 
 class TestSequentialNumbers:
-    """Tests for GET /api/random/sequential endpoint"""
+    """Tests for GET /random/sequential endpoint"""
 
     def test_sequential_basic(self, client):
         """Test sequential number generation"""
-        response = client.get("/api/random/sequential?count=10&start=1")
+        response = client.get("/random/sequential?count=10&start=1")
 
         assert response.status_code == 200
         data = response.json()
@@ -224,7 +224,7 @@ class TestSequentialNumbers:
 
     def test_sequential_custom_start(self, client):
         """Test sequential numbers with custom start"""
-        response = client.get("/api/random/sequential?count=5&start=10")
+        response = client.get("/random/sequential?count=5&start=10")
 
         assert response.status_code == 200
         data = response.json()
@@ -233,11 +233,11 @@ class TestSequentialNumbers:
 
 
 class TestRangeInfo:
-    """Tests for GET /api/random/range-info endpoint"""
+    """Tests for GET /random/range-info endpoint"""
 
     def test_range_info_basic(self, client):
         """Test getting range information"""
-        response = client.get("/api/random/range-info?min_number=1&max_number=49")
+        response = client.get("/random/range-info?min_number=1&max_number=49")
 
         assert response.status_code == 200
         data = response.json()
@@ -248,13 +248,13 @@ class TestRangeInfo:
 
     def test_range_info_invalid(self, client):
         """Test range info with invalid range"""
-        response = client.get("/api/random/range-info?min_number=49&max_number=1")
+        response = client.get("/random/range-info?min_number=49&max_number=1")
 
         assert response.status_code == 400
 
 
 class TestSeedGenerate:
-    """Tests for POST /api/random/seed-generate endpoint"""
+    """Tests for POST /random/seed-generate endpoint"""
 
     def test_seed_generate_reproducible(self, client):
         """Test that same seed produces same numbers"""
@@ -266,11 +266,11 @@ class TestSeedGenerate:
         }
 
         # First generation
-        response1 = client.post("/api/random/seed-generate?seed=12345", json=request)
+        response1 = client.post("/random/seed-generate?seed=12345", json=request)
         data1 = response1.json()
 
         # Second generation with same seed
-        response2 = client.post("/api/random/seed-generate?seed=12345", json=request)
+        response2 = client.post("/random/seed-generate?seed=12345", json=request)
         data2 = response2.json()
 
         assert data1["numbers"] == data2["numbers"]
@@ -285,10 +285,10 @@ class TestSeedGenerate:
             "include_bonus": False
         }
 
-        response1 = client.post("/api/random/seed-generate?seed=123", json=request)
+        response1 = client.post("/random/seed-generate?seed=123", json=request)
         data1 = response1.json()
 
-        response2 = client.post("/api/random/seed-generate?seed=456", json=request)
+        response2 = client.post("/random/seed-generate?seed=456", json=request)
         data2 = response2.json()
 
         # Very likely different (not guaranteed but extremely probable)

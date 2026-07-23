@@ -30,9 +30,9 @@
   - Maintains backward compatibility
 
 - [x] **Endpoints**
-  - `POST /api/system` - Main endpoint for building wheeling systems
-  - `POST /api/system/wheeling` - Explicit wheeling endpoint
-  - `POST /api/system/wheeling/random` - Random wheeling system
+  - `POST /system` - Main endpoint for building wheeling systems
+  - `POST /system/wheeling` - Explicit wheeling endpoint
+  - `POST /system/wheeling/random` - Random wheeling system
 
 ## ✅ Validation
 

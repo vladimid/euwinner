@@ -6,25 +6,25 @@
 
 **Default (100 draws, all numbers 1-59):**
 ```bash
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{}'
 ```
 
 **Last 20 draws:**
 ```bash
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{"draws": 20}'
 ```
 
 **Skip 10, analyze next 50:**
 ```bash
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" -d '{"draws": 50, "offset": 10}'
 ```
 
 **Only numbers [1,10,20,30,40,50,59]:**
 ```bash
-curl -X POST http://localhost:8000/api/analysis/frequency \
+curl -X POST http://localhost:8000/analysis/frequency \
   -H "Content-Type: application/json" \
   -d '{"number_range": [1,10,20,30,40,50,59]}'
 ```

@@ -19,19 +19,19 @@ Generate `random_numbers_controller.py` from Java class in euwin project
 
 ### Code Generation ✅
 - [x] random_numbers_controller.py (354 lines)
-  - POST /api/random/generate
-  - POST /api/random/generate-bulk
-  - POST /api/random/validate
-  - GET /api/random/sequential
-  - GET /api/random/range-info
-  - POST /api/random/seed-generate
+  - POST /random/generate
+  - POST /random/generate-bulk
+  - POST /random/validate
+  - GET /random/sequential
+  - GET /random/range-info
+  - POST /random/seed-generate
 
 - [x] system_controller.py (160 lines)
-  - GET /api/system/health
-  - GET /api/system/status
-  - GET /api/system/info
-  - GET /api/system/config
-  - GET /api/system/version
+  - GET /system/health
+  - GET /system/status
+  - GET /system/info
+  - GET /system/config
+  - GET /system/version
 
 ### Project Structure ✅
 - [x] euwin/__init__.py

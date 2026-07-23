@@ -20,10 +20,10 @@ app.add_middleware(
 # Import and include routers from your controllers
 from euwin.api.routes import data_controller, analysis_controller, random_numbers_controller, system_controller
 
-app.include_router(data_controller.router, prefix="/api/data", tags=["Data"])
-app.include_router(analysis_controller.router, prefix="/api/analysis", tags=["Analysis"])
-app.include_router(random_numbers_controller.router, prefix="/api/random", tags=["Random Numbers"])
-app.include_router(system_controller.router, prefix="/api/system", tags=["System"])
+app.include_router(data_controller.router, prefix="/data", tags=["Data"])
+app.include_router(analysis_controller.router, prefix="/analysis", tags=["Analysis"])
+app.include_router(random_numbers_controller.router, prefix="/random", tags=["Random Numbers"])
+app.include_router(system_controller.router, prefix="/system", tags=["System"])
 
 # Root endpoint
 @app.get("/")

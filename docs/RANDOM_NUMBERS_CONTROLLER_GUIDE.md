@@ -17,10 +17,10 @@ euwin/api/routes/
 
 ## API Endpoints
 
-All endpoints are prefixed with `/api/random` as defined in `euwin/api/main.py`.
+All endpoints are prefixed with `/random` as defined in `euwin/api/main.py`.
 
 ### 1. Generate Random Numbers
-**Endpoint:** `POST /api/random/generate`
+**Endpoint:** `POST /random/generate`
 
 Generate a single set of random numbers within a specified range.
 
@@ -55,7 +55,7 @@ Generate a single set of random numbers within a specified range.
 ---
 
 ### 2. Generate Random Numbers in Bulk
-**Endpoint:** `POST /api/random/generate-bulk`
+**Endpoint:** `POST /random/generate-bulk`
 
 Generate multiple sets of random numbers efficiently.
 
@@ -97,7 +97,7 @@ Generate multiple sets of random numbers efficiently.
 ---
 
 ### 3. Validate Random Numbers
-**Endpoint:** `POST /api/random/validate`
+**Endpoint:** `POST /random/validate`
 
 Validate a set of numbers against specified criteria.
 
@@ -128,7 +128,7 @@ Validate a set of numbers against specified criteria.
 ---
 
 ### 4. Generate Sequential Numbers
-**Endpoint:** `GET /api/random/sequential?count=10&start=1`
+**Endpoint:** `GET /random/sequential?count=10&start=1`
 
 Generate sequential numbers starting from a given number.
 
@@ -149,7 +149,7 @@ Generate sequential numbers starting from a given number.
 ---
 
 ### 5. Get Range Information
-**Endpoint:** `GET /api/random/range-info?min_number=1&max_number=49`
+**Endpoint:** `GET /random/range-info?min_number=1&max_number=49`
 
 Get statistical information about a number range.
 
@@ -173,7 +173,7 @@ Get statistical information about a number range.
 ---
 
 ### 6. Generate with Seed (Reproducible)
-**Endpoint:** `POST /api/random/seed-generate?seed=12345`
+**Endpoint:** `POST /random/seed-generate?seed=12345`
 
 Generate random numbers using a specific seed for reproducibility.
 
@@ -260,7 +260,7 @@ from euwin.api.routes import random_numbers_controller
 
 app.include_router(
     random_numbers_controller.router,
-    prefix="/api/random",
+    prefix="/random",
     tags=["Random Numbers"]
 )
 ```
@@ -297,7 +297,7 @@ app.include_router(
 
 ```bash
 # Generate random numbers
-curl -X POST http://localhost:8000/api/random/generate \
+curl -X POST http://localhost:8000/random/generate \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -308,10 +308,10 @@ curl -X POST http://localhost:8000/api/random/generate \
   }'
 
 # Get range info
-curl http://localhost:8000/api/random/range-info?min_number=1&max_number=49
+curl http://localhost:8000/random/range-info?min_number=1&max_number=49
 
 # Validate numbers
-curl -X POST http://localhost:8000/api/random/validate \
+curl -X POST http://localhost:8000/random/validate \
   -H "Content-Type: application/json" \
   -d '{
     "numbers": [3, 15, 27, 35, 41, 48],
@@ -328,7 +328,7 @@ import requests
 
 # Generate random numbers
 response = requests.post(
-    'http://localhost:8000/api/random/generate',
+    'http://localhost:8000/random/generate',
     json={
         'count': 6,
         'min_number': 1,

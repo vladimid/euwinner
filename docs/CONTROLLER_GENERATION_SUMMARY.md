@@ -63,7 +63,7 @@ All endpoints mounted at `/api/random` with auto-generated documentation:
 
 ### Generate Random Numbers
 ```bash
-curl -X POST http://localhost:8000/api/random/generate \
+curl -X POST http://localhost:8000/random/generate \
   -H "Content-Type: application/json" \
   -d '{
     "count": 6,
@@ -86,7 +86,7 @@ curl -X POST http://localhost:8000/api/random/generate \
 
 ### Validate Numbers
 ```bash
-curl -X POST http://localhost:8000/api/random/validate \
+curl -X POST http://localhost:8000/random/validate \
   -H "Content-Type: application/json" \
   -d '{
     "numbers": [3, 15, 27, 35, 41, 48],
