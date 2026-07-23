@@ -101,7 +101,7 @@ def analyze_frequency(
 
     # Calculate statistics
     most_frequent = [num for num, count in sorted_freq[:10] if count > 0]
-    least_frequent = [num for num, count in sorted_freq[-10:] if count == 0]
+    least_frequent = [num for num, count in sorted_freq[-10:] if count >= 0]
     never_drawn = [num for num, count in frequency.items() if count == 0]
 
     # Count distribution

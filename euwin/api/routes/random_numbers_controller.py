@@ -43,7 +43,7 @@ class BulkRandomGenerationResponse(BaseModel):
 
 class RandomNumberValidationRequest(BaseModel):
     """Request model for validating random numbers"""
-    numbers: List[int] = Field(..., min_items=1, description="Numbers to validate")
+    numbers: List[int] = Field(..., min_length=1, description="Numbers to validate")
     min_allowed: int = Field(..., ge=1, description="Minimum allowed value")
     max_allowed: int = Field(..., ge=1, description="Maximum allowed value")
     allow_duplicates: bool = Field(default=False, description="Whether duplicates are allowed")
@@ -66,6 +66,23 @@ class SequentialNumbersResponse(BaseModel):
     """Response model for sequential numbers"""
     numbers: List[int] = Field(..., description="Generated sequential numbers")
     count: int = Field(..., description="Total count of numbers")
+
+
+class RandomNumbersFromListRequest(BaseModel):
+    """Request model for generating random numbers from a provided list"""
+    count: int = Field(..., ge=1, le=100, description="Number of random numbers to generate")
+    number_pool: List[int] = Field(..., min_length=1, description="List of numbers to choose from")
+    include_bonus: bool = Field(default=False, description="Include bonus number generation")
+    bonus_range: Optional[int] = Field(default=None, description="Range for bonus number (if include_bonus=true)")
+
+
+class BulkRandomNumbersFromListRequest(BaseModel):
+    """Request model for bulk random number generation from a provided list"""
+    generations: int = Field(..., ge=1, le=1000, description="Number of generation requests")
+    count: int = Field(..., ge=1, le=100, description="Numbers per generation")
+    number_pool: List[int] = Field(..., min_length=1, description="List of numbers to choose from")
+    include_bonus: bool = Field(default=False, description="Include bonus number generation")
+    bonus_range: Optional[int] = Field(default=None, description="Range for bonus number")
 
 
 # ==================== Endpoints ====================
@@ -185,6 +202,119 @@ async def generate_bulk_random_numbers(request: BulkRandomGenerationRequest):
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error in bulk generation: {str(e)}")
+
+
+@router.post("/generate-from-list", response_model=RandomNumbersResponse)
+async def generate_random_numbers_from_list(request: RandomNumbersFromListRequest):
+    """
+    Generate random numbers by selecting from a provided list.
+
+    Args:
+        request: RandomNumbersFromListRequest containing count, number_pool, and optional bonus
+
+    Returns:
+        RandomNumbersResponse with generated numbers and optional bonus
+
+    Raises:
+        HTTPException: If parameters are invalid
+    """
+    try:
+        # Check if number_pool has duplicates
+        if len(request.number_pool) != len(set(request.number_pool)):
+            raise HTTPException(
+                status_code=400,
+                detail="number_pool contains duplicate numbers"
+            )
+
+        # Check if requested count exceeds available numbers
+        if request.count > len(request.number_pool):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Cannot generate {request.count} unique numbers from pool of {len(request.number_pool)} numbers"
+            )
+
+        # Generate random numbers by sampling from the provided list
+        generated_numbers = sorted(random.sample(request.number_pool, request.count))
+
+        # Generate bonus number if requested
+        bonus = None
+        if request.include_bonus and request.bonus_range:
+            if request.bonus_range < 1:
+                raise HTTPException(
+                    status_code=400,
+                    detail="bonus_range must be at least 1"
+                )
+            bonus = random.randint(1, request.bonus_range)
+
+        return RandomNumbersResponse(
+            numbers=generated_numbers,
+            bonus=bonus,
+            count=len(generated_numbers)
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating random numbers from list: {str(e)}")
+
+
+@router.post("/generate-from-list-bulk", response_model=BulkRandomGenerationResponse)
+async def generate_bulk_random_numbers_from_list(request: BulkRandomNumbersFromListRequest):
+    """
+    Generate multiple sets of random numbers in bulk from a provided list.
+
+    Useful for generating multiple lottery draw combinations from a specific number pool.
+
+    Args:
+        request: BulkRandomNumbersFromListRequest with generation parameters
+
+    Returns:
+        BulkRandomGenerationResponse with all generated sets
+
+    Raises:
+        HTTPException: If parameters are invalid
+    """
+    try:
+        # Check if number_pool has duplicates
+        if len(request.number_pool) != len(set(request.number_pool)):
+            raise HTTPException(
+                status_code=400,
+                detail="number_pool contains duplicate numbers"
+            )
+
+        # Check if requested count exceeds available numbers
+        if request.count > len(request.number_pool):
+            raise HTTPException(
+                status_code=400,
+                detail=f"Cannot generate {request.count} unique numbers from pool of {len(request.number_pool)} numbers"
+            )
+
+        results = []
+
+        for _ in range(request.generations):
+            # Generate random numbers by sampling from the provided list
+            generated_numbers = sorted(random.sample(request.number_pool, request.count))
+
+            # Generate bonus if requested
+            bonus = None
+            if request.include_bonus and request.bonus_range:
+                bonus = random.randint(1, request.bonus_range)
+
+            results.append(RandomNumbersResponse(
+                numbers=generated_numbers,
+                bonus=bonus,
+                count=len(generated_numbers)
+            ))
+
+        return BulkRandomGenerationResponse(
+            results=results,
+            total_sets=len(results)
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error in bulk generation from list: {str(e)}")
 
 
 @router.post("/validate", response_model=RandomNumberValidationResponse)
